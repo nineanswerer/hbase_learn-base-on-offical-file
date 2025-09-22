@@ -1,10 +1,12 @@
 # hbase_learn-base-on-offical-file
 依旧伪分布式集群
+# 使用环境：
+已完成hadoop的为伪分布式部署，并版本适配
 
 首先贴上官方文档链接：[hbase快速上手](https://hbase.apache.org/book.html#getting_started)
 
 *首先我需要说一下单机的hbase，用以快速上手。*
-
+# hbase单机部署
 *单机的hbase的部署非常简单，不需要思考什么，只需要照搬hadoop的部署方式。下面就来讲讲：*
 ## 1.下载和解压
 首先还是需要下载一个你喜欢的版本，[下载链接在这](https://dlcdn.apache.org/hbase/)（不需要魔法）
@@ -37,3 +39,12 @@ bin/start-hbase.sh
 
 至此，单机的部署就可以完成了，你可以通过 http://localhost:16010 网址查看你的hbase运行状态，这是默认端口。至于具体的使用方式，后面会讲。
 
+如果你想退出，请在CLI输入
+```
+bin/stop-hbase.sh
+```
+以停止hbase的运行。
+
+# hbase伪分布式集群
+
+在进行
