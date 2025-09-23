@@ -2,7 +2,7 @@
  * @Author: nineanswerer 787922829@qq.com
  * @Date: 2025-09-22 18:13:37
  * @LastEditors: nineanswerer 787922829@qq.com
- * @LastEditTime: 2025-09-23 13:46:41
+ * @LastEditTime: 2025-09-23 13:48:14
  * @FilePath: \hbase_learn-base-on-offical-file\ppt的讲解.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -110,13 +110,12 @@ hbase的版本命名规则通常由三个部分组成（例如 2.4.9。）
 
 
 <a id="story">
+背景历史：
+
 从最初到1.0版本时代的发展：[取自博客园文章](https://www.cnblogs.com/a198720/articles/4648567.html)
-
 HBase2.0版本在2018年以前已经存在了，由于一些因素，造成无人管理。于是又经一年多的时间才将稳定版本发布出来。
-
 到2.0的大体时间表：[博客园文章](https://www.cnblogs.com/quchunhui/articles/9797325.html)
-
 根据官网版本分析，2.4.18 ，2.5.12 ，2.6.3这几个版本目前是稳定版本。
-
 至于3.x系列目前还在开发阶段，这一点我们通过官网或者镜像瞎子啊界面也可以看出来，3.0.0-beta-1版本是唯一的3.x系列测试版。
+
 </a>
