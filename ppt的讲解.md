@@ -2,7 +2,7 @@
  * @Author: nineanswerer 787922829@qq.com
  * @Date: 2025-09-22 18:13:37
  * @LastEditors: nineanswerer 787922829@qq.com
- * @LastEditTime: 2025-09-23 13:48:14
+ * @LastEditTime: 2025-09-23 13:49:17
  * @FilePath: \hbase_learn-base-on-offical-file\ppt的讲解.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -25,6 +25,7 @@ hbase的版本命名规则通常由三个部分组成（例如 2.4.9。）
 | **Hadoop 兼容性** | 主要兼容旧版 Hadoop 2.x 系列，对新版支持不佳。 | 广泛兼容 Hadoop 3.x，也支持部分 Hadoop 2.x 版本，推荐与新版Hadoop生态配合使用。 | 预计将以最新的 Hadoop 3.x 系列为主要兼容目标，并深度集成最新生态特性。 |
 | **推荐用途** | 维护现有老项目，追求稳定可靠。 | 部署新项目，或从旧版本升级，追求更高性能和新功能。 | 关注未来发展，用于测试和研究新特性。不推荐用于生产环境。 |
 | **社区支持** | 社区支持力度逐渐减弱，主要以维护为主。 | 活跃的社区支持，功能更新快，文档丰富。 | 社区关注热点，但尚未发布正式版本，文档和支持仍在完善中。 |
+
 通常来讲，社区的主流开发和维护的重心会围绕在当前年限下的最新版本和稳定版本，如现在的3.x系列是最新的，而2.x是稳定版本。
 对于我们学习使用，我们选取hbase2.5.12版本作为使用，他的前置hadoop版本建议为3.x，我们这里安装为3.3.6版本号。
 如果你想看版本故事，可以点击这里[版本背景和故事](#story)
