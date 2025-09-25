@@ -2,7 +2,7 @@
  * @Author: nineanswerer 787922829@qq.com
  * @Date: 2025-09-22 18:13:37
  * @LastEditors: nineanswerer 787922829@qq.com
- * @LastEditTime: 2025-09-23 13:49:17
+ * @LastEditTime: 2025-09-24 20:41:57
  * @FilePath: \hbase_learn-base-on-offical-file\ppt的讲解.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -82,22 +82,66 @@ hbase的版本命名规则通常由三个部分组成（例如 2.4.9。）
 * HBase3.x目前没找到消息，不过预计是和Hadoop3.x适配。
 总之，在使用稳定版的情况下，我们就是使用Java11+，Hadoop3.x是没毛病的。
 
+
+| HBase 核心版本 | JDK 要求 | Hadoop 兼容性 | ZooKeeper 兼容性 | 可信赖的网址（官方/权威文档） |
+|---------------|---------|--------------|-----------------|----------------------------|
+| HBase 1.4.x | 1.7/1.8 | 2.6-2.10.x | 3.4-3.5.x | Apache HBase 1.4 Reference Guide (PDF)（可从 Apache 网站下载） |
+| HBase 2.4.x | 1.8 | 3.1-3.3.x | 3.5-3.7.x | Apache HBase 2.4 API Docs (官方 API 文档) |
+| HBase 2.5.x | 1.8/11 | 3.3.4.x & Hadoop 3.x | 3.7-3.8.x | Apache HBase Downloads Page (获取下载和发行说明) |
+| HBase 3.0.0-alpha | 11+ | 3.4.x+ | 3.8.x+ | Apache Mail Archives (HBase 3 Release Plans) (HBase 开发者邮件列表讨论) |
+
+
+
 ## 二. 通用文件配置设置
 在下载解压好的文件夹中，有这样几个核心目录：
-* bin/
-* conf/
-* lib/
-* logs/
+| 目录名 | 核心作用 | 包含的文件类型举例 |
+| :--- | :--- | :--- |
+| **bin/** | 存放可执行脚本 | 启动/停止脚本（`start-hbase.sh`, `stop-hbase.sh`）、HBase Shell客户端（`hbase`）、各种工具脚本（如`hbase-daemon.sh`） |
+| **conf/** | 存放配置文件 | 核心配置文件（`hbase-site.xml`）、环境变量配置（`hbase-env.sh`）、注册RegionServer的节点（`regionservers`） |
+| **lib/** | 存放依赖的JAR包 | HBase自身及依赖的第三方库（JAR文件），如Hadoop、ZooKeeper、Guava等库 |
+| **logs/** | 存放运行时日志 | HMaster日志、RegionServer日志、HBase Shell操作日志等，是排查问题的首要依据 |
 
+而我们在使用时候，修改最多的就是conf文件夹，如下：
+HBase 的主要配置文件位于 `conf` 目录中 。这是非常重要的目录，包含了 HBase 的所有配置文件 。
 
+* **`hbase-env.sh`**: 这是一个用于 Linux/Unix 环境的脚本，用于设置 HBase 的工作环境 。您需要在此文件中配置 **`JAVA_HOME`** 的位置以及其他环境变量。如果您不使用自带的 ZooKeeper，则需要将 `HBASE_MANAGES_ZK` 设置为 `false` 。
+根据实践，我的文件中有以下代码：![](java路径和hdfs路径.png)
 
+![](允许自用zookeeper.png)
+除此之外，次文件再无更改。
+* **`hbase-site.xml`**: 这是 HBase 的主配置文件 。此文件指定了用于覆盖 HBase 默认配置的选项。您可以在此文件中配置 `hbase.rootdir` 以指定 HBase 在 HDFS 上的根目录，以及 `hbase.zookeeper.quorum` 来指定 ZooKeeper 集群的主机名。
+文件中代码除了注释外的只有：![](hbase-site-1.png)
 
+![](hbase-site-2.png)
 
+上面图片中代码为
+```
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
 
+  <property>
+    <name>hbase.rootdir</name>
+    <value>hdfs://localhost:9000/hbase</value>
+  </property>
 
+  <property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>localhost</value>
+  </property>
 
+  <property>
+      <name>hbase.manages.zk</name>
+      <value>true</value>
+  </property>
 
+</configuration>
 
+```
+* **`regionservers`**: 这是一个纯文本文件，其中包含了应在 HBase 群集中运行 RegionServer 的主机列表。默认情况下，此文件只包含单个条目 `localhost` 。您需要将其修改为对应的主机名或 IP 地址，每行一个
+这是全分布式的，我们暂时不用
+---
 
 
 
